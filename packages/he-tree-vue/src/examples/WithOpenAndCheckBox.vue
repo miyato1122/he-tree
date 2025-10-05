@@ -12,8 +12,13 @@
           {{ stat.open ? "-" : "+" }}
         </button>
         <span v-else>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <input type="checkbox" v-model="stat.checked" />
+        <input
+          type="checkbox"
+          :checked="stat.checked === true || stat.checked === 0"
+          @change="stat.checked = ($event.target as HTMLInputElement).checked"
+        />
         {{ node.text }}
+        <span v-if="stat.checked === 0" style="color: #999; font-size: 0.9em;">(部分)</span>
       </template>
     </BaseTree>
   </div>
